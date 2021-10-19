@@ -10,11 +10,11 @@ class Blogsingle extends Component {
         return (
           <Fragment>
             <MetaTags>
-              <title>Acres - Real Estate React Template | Blog Single</title>
+              <title>LuxRealAdria | Название статьи</title>
               <meta name='description' content='#' />
             </MetaTags>
             <Header />
-            <Breadcrumb title='Название статьи'/>
+            <Breadcrumb title='Название статьи' />
             <Content />
             <Footer />
           </Fragment>

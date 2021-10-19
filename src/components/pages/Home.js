@@ -7,19 +7,16 @@ import Content from '../sections/home/Content';
 class Home extends Component {
     render() {
         return (
-            <Fragment>
-                <MetaTags>
-                    <title>Acres - Real Estate React Template | Homepage</title>
-                    <meta
-                        name="description"
-                        content="#"
-                    />
-                </MetaTags>
-                <Header/>
-                <Content/>
-                <Footer/>
-            </Fragment>
-        );
+          <Fragment>
+            <MetaTags>
+              <title>LuxRealAdria | Главная</title>
+              <meta name='description' content='#' />
+            </MetaTags>
+            <Header />
+            <Content />
+            <Footer />
+          </Fragment>
+        )
     }
 }
 

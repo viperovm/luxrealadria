@@ -8,20 +8,17 @@ import Content from '../sections/legal/Content';
 class Legal extends Component {
     render() {
         return (
-            <Fragment>
-                <MetaTags>
-                    <title>Acres - Real Estate React Template | Legal</title>
-                    <meta
-                        name="description"
-                        content="#"
-                    />
-                </MetaTags>
-                <Header/>
-                <Breadcrumb breadcrumb={{pagename:'Правовая информация'}} />
-                <Content/>
-                <Footer/>
-            </Fragment>
-        );
+          <Fragment>
+            <MetaTags>
+              <title>LuxRealAdria | Правовая информация</title>
+              <meta name='description' content='#' />
+            </MetaTags>
+            <Header />
+            <Breadcrumb breadcrumb={{ pagename: 'Правовая информация' }} />
+            <Content />
+            <Footer />
+          </Fragment>
+        )
     }
 }
 

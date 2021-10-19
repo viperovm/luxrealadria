@@ -6,18 +6,15 @@ import Content from '../sections/login/Content';
 class Login extends Component {
     render() {
         return (
-            <Fragment>
-                <MetaTags>
-                    <title>Acres - Real Estate React Template | Login</title>
-                    <meta
-                        name="description"
-                        content="#"
-                    />
-                </MetaTags>
-                <Header/>
-                <Content/>
-            </Fragment>
-        );
+          <Fragment>
+            <MetaTags>
+              <title>LuxRealAdria | вход</title>
+              <meta name='description' content='#' />
+            </MetaTags>
+            <Header />
+            <Content />
+          </Fragment>
+        )
     }
 }
 

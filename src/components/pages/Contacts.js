@@ -10,7 +10,7 @@ class Contacts extends Component {
     return (
       <Fragment>
         <MetaTags>
-          <title>Acres - Real Estate React Template | Agency Details</title>
+          <title>LuxRealAdria | Контакты</title>
           <meta name='description' content='#' />
         </MetaTags>
         <Header />

@@ -5,17 +5,14 @@ import Content from '../sections/comingsoon/Content';
 class Comingsoon extends Component {
     render() {
         return (
-            <Fragment>
-                <MetaTags>
-                    <title>Acres - Real Estate React Template | Coming Soon</title>
-                    <meta
-                        name="description"
-                        content="#"
-                    />
-                </MetaTags>
-                <Content/>
-            </Fragment>
-        );
+          <Fragment>
+            <MetaTags>
+              <title>LuxRealAdria | Скоро открытие</title>
+              <meta name='description' content='#' />
+            </MetaTags>
+            <Content />
+          </Fragment>
+        )
     }
 }
 

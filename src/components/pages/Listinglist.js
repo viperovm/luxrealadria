@@ -8,20 +8,17 @@ import Content from '../sections/listinglist/Content';
 class Listinglist extends Component {
     render() {
         return (
-            <Fragment>
-                <MetaTags>
-                    <title>Acres - Real Estate React Template | Listing List</title>
-                    <meta
-                        name="description"
-                        content="#"
-                    />
-                </MetaTags>
-                <Header/>
-                <Breadcrumb breadcrumb={{pagename:'Объекты недвижимости'}} />
-                <Content/>
-                <Footer/>
-            </Fragment>
-        );
+          <Fragment>
+            <MetaTags>
+              <title>LuxRealAdria | Объекты недвижимости</title>
+              <meta name='description' content='#' />
+            </MetaTags>
+            <Header />
+            <Breadcrumb breadcrumb={{ pagename: 'Объекты недвижимости' }} />
+            <Content />
+            <Footer />
+          </Fragment>
+        )
     }
 }
 

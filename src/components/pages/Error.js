@@ -8,20 +8,17 @@ import Content from '../sections/error/Content';
 class Error extends Component {
     render() {
         return (
-            <Fragment>
-                <MetaTags>
-                    <title>Acres - Real Estate React Template | Error 404</title>
-                    <meta
-                        name="description"
-                        content="#"
-                    />
-                </MetaTags>
-                <Header/>
-                <Breadcrumb breadcrumb={{pagename:'Error 404'}} />
-                <Content/>
-                <Footer/>
-            </Fragment>
-        );
+          <Fragment>
+            <MetaTags>
+              <title>LuxRealAdria | 404</title>
+              <meta name='description' content='#' />
+            </MetaTags>
+            <Header />
+            <Breadcrumb breadcrumb={{ pagename: 'Error 404' }} />
+            <Content />
+            <Footer />
+          </Fragment>
+        )
     }
 }
 

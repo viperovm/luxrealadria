@@ -7,19 +7,16 @@ import Content from '../sections/listing-details-v2/Content';
 class Listingdetailstwo extends Component {
     render() {
         return (
-            <Fragment>
-                <MetaTags>
-                    <title>Acres - Real Estate React Template | Listing Details</title>
-                    <meta
-                        name="description"
-                        content="#"
-                    />
-                </MetaTags>
-                <Header/>
-                <Content/>
-                <Footer/>
-            </Fragment>
-        );
+          <Fragment>
+            <MetaTags>
+              <title>LuxRealAdria | Объект</title>
+              <meta name='description' content='#' />
+            </MetaTags>
+            <Header />
+            <Content />
+            <Footer />
+          </Fragment>
+        )
     }
 }
 

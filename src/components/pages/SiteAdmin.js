@@ -9,7 +9,7 @@ const SiteAdmin = () => {
   return (
     <Fragment>
       <MetaTags>
-        <title>Acres - Real Estate React Template | Submit Listing</title>
+        <title>LuxRealAdria | Управление сайтом</title>
         <meta name='description' content='#' />
       </MetaTags>
       <Header />

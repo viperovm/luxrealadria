@@ -10,18 +10,15 @@ class Register extends Component {
     }
     render() {
         return (
-            <Fragment>
-                <MetaTags>
-                    <title>Acres - Real Estate React Template | Register</title>
-                    <meta
-                        name="description"
-                        content="#"
-                    />
-                </MetaTags>
-                <Header/>
-                <Content action={() => this.redirect}/>
-            </Fragment>
-        );
+          <Fragment>
+            <MetaTags>
+              <title>LuxRealAdria | Регистрация</title>
+              <meta name='description' content='#' />
+            </MetaTags>
+            <Header />
+            <Content action={() => this.redirect} />
+          </Fragment>
+        )
     }
 }
 
