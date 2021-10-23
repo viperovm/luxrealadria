@@ -44,10 +44,11 @@ function Content(props) {
   const [tab3Enabled, setTab3Enabled] = useState(true)
   const [tab4Enabled, setTab4Enabled] = useState(true)
 
+  console.log(urls)
+
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(11)
     props.add_listing(
       propertyName,
       propertyDescription,
@@ -66,7 +67,6 @@ function Content(props) {
       propertyRegion,
       urls
     )
-    console.log(12)
   }
 
 
@@ -137,8 +137,7 @@ function Content(props) {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(downloadURL =>
-            setUrls(urls => [...urls, downloadURL])
-          )
+            setUrls(urls => [...urls, downloadURL]))
         }
       )
     })

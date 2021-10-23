@@ -17,6 +17,10 @@ import {
   ADD_TYPE_FAIL,
   GET_ALL_TYPES_SUCCESS,
   GET_ALL_TYPES_FAIL,
+  GET_BEDS_SUCCESS,
+  GET_BEDS_FAIL,
+  GET_BATHS_SUCCESS,
+  GET_BATHS_FAIL,
 } from '../actions/types'
 
 const initialState = {
@@ -25,6 +29,8 @@ const initialState = {
   purposes: [], 
   types: [], 
   range: {},
+  beds: '',
+  baths: '',
   error: null,
 }
 
@@ -77,6 +83,16 @@ export default function (state = initialState, action) {
         ...state,
         range: payload,
       }
+    case GET_BEDS_SUCCESS:
+      return {
+        ...state,
+        beds: payload,
+      }
+    case GET_BATHS_SUCCESS:
+      return {
+        ...state,
+        baths: payload,
+      }
     case ADD_STATUS_FAIL:
     case GET_ALL_STATUSES_FAIL:
     case ADD_REGION_FAIL:
@@ -86,6 +102,8 @@ export default function (state = initialState, action) {
     case GET_ALL_PURPOSES_FAIL:
     case ADD_TYPE_FAIL:
     case GET_ALL_TYPES_FAIL:
+    case GET_BEDS_FAIL:
+    case GET_BATHS_FAIL:
       return {
         ...state,
         error: payload,

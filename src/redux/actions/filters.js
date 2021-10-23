@@ -28,28 +28,33 @@ import {
   ADD_TYPE_FAIL,
   GET_ALL_TYPES_SUCCESS,
   GET_ALL_TYPES_FAIL,
+  GET_BEDS_SUCCESS,
+  GET_BEDS_FAIL,
+  GET_BATHS_SUCCESS,
+  GET_BATHS_FAIL,
 } from './types'
+import { getNumber } from './listings'
 
 export const get_all_filters = () => {
-    get_all_regions()
-    get_all_statuses()
-    get_price_range()
-    get_all_purposes()
-    get_all_types()
+  get_all_regions()
+  get_all_statuses()
+  get_price_range()
+  get_all_purposes()
+  get_all_types()
+  get_beds()
+  get_baths()
 }
 
 export const add_region = regionName => async dispatch => {
-  const docRef = await addDoc(collection(db, 'regions'), {
+  const docRef = await addDoc(collection(db, 'locations'), {
     regionName: regionName,
   })
   if (docRef && docRef.id) {
-    console.log(21)
     dispatch({
       type: ADD_REGION_SUCCESS,
       payload: docRef,
     })
   } else {
-    console.log(22)
     dispatch({
       type: ADD_REGION_FAIL,
       payload: 'При записи региона произошла ошибка. Повторите попытку позже',
@@ -59,7 +64,7 @@ export const add_region = regionName => async dispatch => {
 
 export const get_all_regions = () => async dispatch => {
   const arr = []
-  const q = query(collection(db, 'regions'))
+  const q = query(collection(db, 'locations'))
   try {
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach(doc => {
@@ -68,7 +73,9 @@ export const get_all_regions = () => async dispatch => {
 
     dispatch({
       type: GET_ALL_REGIONS_SUCCESS,
-      payload: arr,
+      payload: arr.sort(function (a, b) {
+        return a.name - b.name
+      }),
     })
   } catch (error) {
     dispatch({
@@ -83,13 +90,11 @@ export const add_status = statusName => async dispatch => {
     statusName: statusName,
   })
   if (docRef && docRef.id) {
-    console.log(21)
     dispatch({
       type: ADD_STATUS_SUCCESS,
       payload: docRef,
     })
   } else {
-    console.log(22)
     dispatch({
       type: ADD_STATUS_FAIL,
       payload: 'При записи статуса произошла ошибка. Повторите попытку позже',
@@ -128,9 +133,9 @@ export const get_price_range = () => async dispatch => {
     })
     let arr = []
     arrOfObjs.map(item => {
-        let n = parseInt(item.price, 10)
-        arr.push(n)
-        return n
+      let n = parseInt(item.price, 10)
+      arr.push(n)
+      return n
     })
 
     arr.sort(function (a, b) {
@@ -138,8 +143,8 @@ export const get_price_range = () => async dispatch => {
     })
 
     let range = {
-        lowest: arr[0],
-        highest: arr.at(-1)
+      lowest: arr[0],
+      highest: arr.at(-1),
     }
 
     dispatch({
@@ -159,16 +164,15 @@ export const add_purpose = purposeName => async dispatch => {
     purpose: purposeName,
   })
   if (docRef && docRef.id) {
-    console.log(21)
     dispatch({
       type: ADD_PURPOSE_SUCCESS,
       payload: docRef,
     })
   } else {
-    console.log(22)
     dispatch({
       type: ADD_PURPOSE_FAIL,
-      payload: 'При записи назначения произошла ошибка. Повторите попытку позже',
+      payload:
+        'При записи назначения произошла ошибка. Повторите попытку позже',
     })
   }
 }
@@ -201,13 +205,11 @@ export const add_type = (typeName, typeIcon, typePicture) => async dispatch => {
     picture: typePicture,
   })
   if (docRef && docRef.id) {
-    console.log(21)
     dispatch({
       type: ADD_TYPE_SUCCESS,
       payload: docRef,
     })
   } else {
-    console.log(22)
     dispatch({
       type: ADD_TYPE_FAIL,
       payload: 'При записи типа произошла ошибка. Повторите попытку позже',
@@ -226,11 +228,44 @@ export const get_all_types = () => async dispatch => {
 
     dispatch({
       type: GET_ALL_TYPES_SUCCESS,
-      payload: arr,
+      payload: arr.sort(function (a, b) {
+        return new Date(a.created) - new Date(b.created)
+      }),
     })
   } catch (error) {
     dispatch({
       type: GET_ALL_TYPES_FAIL,
+      payload: error,
+    })
+  }
+}
+
+
+export const get_beds = () => async dispatch => {
+  try {
+    let beds = await getNumber('beds')
+    dispatch({
+      type: GET_BEDS_SUCCESS,
+      payload: beds.number,
+    })
+  } catch (error) {
+    dispatch({
+      type: GET_BEDS_FAIL,
+      payload: error,
+    })
+  }
+}
+
+export const get_baths = () => async dispatch => {
+  try {
+    let baths = await getNumber('baths')
+    dispatch({
+      type: GET_BATHS_SUCCESS,
+      payload: baths.number,
+    })
+  } catch (error) {
+    dispatch({
+      type: GET_BATHS_FAIL,
       payload: error,
     })
   }

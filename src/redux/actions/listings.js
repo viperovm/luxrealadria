@@ -7,6 +7,7 @@ import {
   where,
   getDocs,
   getDoc,
+  updateDoc,
 } from 'firebase/firestore'
 import {
   auth,
@@ -22,6 +23,56 @@ import {
   GET_LISTING_FAIL,
   SORT_LISTING_SUCCESS,
 } from './types'
+
+const setPrice = async price => {
+  const priceRef = await addDoc(collection(db, 'prices'), {
+    price: price,
+  })
+  if (priceRef && priceRef.id) {
+    console.log('Цена добавлена')
+  } else {
+    console.error('Ошибка добавления цены')
+  }
+}
+
+export const getNumber = async name => {
+  let arr = []
+  const q = query(collection(db, name))
+  try {
+    const querySnapshot = await getDocs(q)
+    
+    querySnapshot.forEach(doc => {
+      arr.push({ number: doc.data().number, id: doc.id })
+    })
+  } catch (error) {
+    console.error(error)
+  }
+  return arr[0]
+}
+
+const setNumber = async (name, current) => {
+  let previous = await getNumber(name)
+  if (parseInt(previous.number) < parseInt(current)) {
+    const docRef = doc(db, name, previous.id)
+    try {
+      await updateDoc(docRef, {
+        number: parseInt(current),
+      })
+      console.log(
+        `Количество ${
+          name === 'beds' ? 'спален' : name === 'baths' ? 'санузлов' : ''
+        } обновлено`
+      )
+    } catch (err) {
+      console.error(
+        `Ошибка при обновлении количества ${
+          name === 'beds' ? 'спален' : name === 'baths' ? 'санузлов' : ''
+        }: `,
+        err
+      )
+    }
+  }
+}
 
 export const add_listing =
   (
@@ -60,21 +111,15 @@ export const add_listing =
       urls: urls,
     })
     if (docRef && docRef.id) {
-      const priceRef = await addDoc(collection(db, 'prices'), {
-        price: propertyPrice,
-      })
-      if (priceRef && priceRef.id) {
-        console.log('Цена добавлена')
-      } else {
-        console.error('Ошибка добавления цены')
-      }
-      console.log(21)
+      setPrice(propertyPrice)
+      setNumber('beds', propertyBeds)
+      setNumber('baths', propertyBaths)
+
       dispatch({
         type: ADD_LISTING_SUCCESS,
         payload: docRef,
       })
     } else {
-      console.log(22)
       dispatch({
         type: ADD_LISTING_FAIL,
         payload: 'При записи объекта произошла ошибка. Повторите попытку позже',

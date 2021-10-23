@@ -1,44 +1,48 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { type } from '../../../data/category.json'
+import { connect } from 'react-redux'
 
-class Categories extends Component {
-  render() {
-    return (
-      <div className='section section-padding'>
-        <div className='container'>
-          <div className='section-title-wrap section-header'>
-            <h5 className='custom-primary'>Категории</h5>
-            <h2 className='title'>Просмотр по типам</h2>
-          </div>
-          <div className='row'>
-            {type.slice(0, 8).map((item, i) => (
+const Categories = ({ types }) => {
+
+  console.log(types)
+  
+  return (
+    <div className='section section-padding'>
+      <div className='container'>
+        <div className='section-title-wrap section-header'>
+          <h5 className='custom-primary'>Категории</h5>
+          <h2 className='title'>Просмотр по типам</h2>
+        </div>
+        <div className='row'>
+          {types &&
+            types.map((item, i) => (
               <div key={i} className='col-lg-4 col-md-6'>
                 <div className='acr-category'>
                   <div className='acr-category-thumb'>
                     <i className={'flaticon-' + item.icon + ''} />
                     <Link to='#'>
-                      <img
-                        src={process.env.PUBLIC_URL + '/' + item.img}
-                        alt='category'
-                      />
+                      <img src={item.image} alt={item.name} />
                     </Link>
                     <div className='acr-category-body'>
                       <h5>
                         {' '}
-                        <Link to='#'>{item.title}</Link>{' '}
+                        <Link to='#'>{item.name}</Link>{' '}
                       </h5>
-                      <span>{item.numberofitem} Объектов</span>
+                      {/* <span>{item.numberofitem} Объектов</span> */}
                     </div>
                   </div>
                 </div>
               </div>
             ))}
-          </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
-export default Categories
+const mapStateToProps = state => ({
+  types: state.filters.types
+})
+
+export default connect(mapStateToProps)(Categories)
